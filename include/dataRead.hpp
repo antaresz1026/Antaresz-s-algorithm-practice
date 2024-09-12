@@ -1,49 +1,70 @@
 #ifndef _DATAREAD_HPP
 #define _DATAREAD_HPP
-
+/**
+ * @file dataRead.hpp
+ * @author antaresz (antaresz1026@gmail,com)
+ * @brief 读取文件数据，流式设计
+ * @version 0.1
+ * @date 2024-09-12
+ * 
+ * @copyright Copyright (c) 2024
+ * 
+ */
 #include <fstream>
 #include <sstream>
 #include "log.hpp"
 #include <queue>
 
+/**
+ * @brief dataRead类
+ * 
+ */
 class dataRead {
 public:
-    // 构造函数，打开文件
+    /**
+     * @brief Construct a new data Read object
+     * 
+     * @param filename 
+     */
     dataRead(const std::string& filename) {
         _file.open(filename);
 
         if (!_file.is_open()) {
-
             BOOST_LOG_TRIVIAL(error) << "Can't open file";
             throw std::runtime_error("无法打开文件");
         }
 
         std::string line;
+
         while (std::getline(_file, line)) {
             _lines.push(line);
         }
     }
 
-    // 重载 >> 操作符，用于提取每一行数据
+    /**
+     * @brief 操作符>>重载
+     * 
+     * @param line 
+     * @return dataRead& 
+     */
     dataRead& operator>>(std::string& line) {
         if (!_lines.empty()) {
             line = _lines.front();
             _lines.pop();
         } else {
-            // 如果到达文件末尾，设置文件的 failbit
-            _file.setstate(std::ios::failbit);
+            line.clear();
         }
         return *this;
     }
 
-        // 检查流是否处于有效状态
+    /**
+     * @brief 如果已经读取完，则返回false
+     * 
+     * @return true 
+     * @return false 
+     */
     operator bool() const {
-        return !_file.fail(); // 返回流是否仍然有效
-    }
-
-    // 检查文件是否结束
-    bool eof() const {
-        return _lines.empty();
+        return !_lines.empty(); // 返回流是否仍然有效
     }
 private:
     std::ifstream _file;

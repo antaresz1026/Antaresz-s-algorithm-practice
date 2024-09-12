@@ -22,10 +22,10 @@ file(GLOB_RECURSE SRC_FILES src/*.cpp)
 
 # 移除main.cpp
 list(REMOVE_ITEM SRC_FILES ${CMAKE_SOURCE_DIR}/src/main.cpp)
-
+set(MAIN_FILE "${CMAKE_SOURCE_DIR}/src/main.cpp")
 # 添加可执行文件 - 程序主文件暂时可以为空或用一个占位
 # 后续主人可以在src/main.cpp中增加内容
-add_executable(AAP ${SRC_FILES} ${CMAKE_SOURCE_DIR}/src/main.cpp)
+add_executable(AAP ${SRC_FILES} ${MAIN_FILE})
 
 # 将 config.h 文件包含到编译中
 target_include_directories(AAP PUBLIC
