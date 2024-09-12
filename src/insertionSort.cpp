@@ -4,10 +4,10 @@
 void insertionSort::dataParse(const std::string& data) {
     std::istringstream iss(data);
     std::ostringstream oss;
-    int number;
+    std::string number;
 
     while(iss >> number) {
-        _sorted_data.push_back(number);
+        _sorted_data.push_back(std::stoi(number.c_str()));
     }
     oss << "Readed nums (";
 
@@ -30,18 +30,18 @@ void insertionSort::_sort(const std::string& data, const bool& op) {
         std::cerr << "[ERROR]: " << e.what() << "\n";
     }
     for (int i = 0, j = 1, key;j < _sorted_data.size();j++) {
-        key = j;
+        key = _sorted_data[j];
         i = j - 1;
 
         if(op) {
-            while (i > 0) {
-                if ( _sorted_data[i] > _sorted_data[key]) {
-                    std::swap(_sorted_data[i], _sorted_data[key]);
+            while (i > -1) {
+                if ( _sorted_data[i] > key) {
+                    std::swap(_sorted_data[i], _sorted_data[i + 1]);
                 }
                 -- i;
             }            
         } else {
-            while (i > 0) {
+            while (i > -1) {
                 if (_sorted_data[i] < _sorted_data[key]) {
                     std::swap(_sorted_data[i], _sorted_data[key]);
                 }
@@ -69,4 +69,5 @@ void insertionSort::_sort(const std::string& data, const bool& op) {
     oss << ")\n";        
     BOOST_LOG_TRIVIAL(info) << oss.str();
     oss.clear();
+    _sorted_data.clear();
 }
