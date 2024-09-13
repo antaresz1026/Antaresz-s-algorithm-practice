@@ -1,20 +1,58 @@
-/**
- * @file log.cpp
- * @author antaresz (antaresz1026@gmail.com)
- * @brief 日志实现
- * @version 1.0
- * @date 2024-09-13
- * 
- * @copyright Copyright (c) 2024 antaresz
- * 
- * @par 修改日志:
- * <table>
- * <tr><th>Date       <th>Version <th>Author <th>Description
- * <tr><td>2024-09-13 <td>1.0     <td>antaresz    <td>添加注释
- * </table>
- */
+---
+title: src/log.cpp
+summary: 日志实现 
+
+---
+
+# src/log.cpp
+
+日志实现  [More...](#detailed-description)
+
+## Functions
+
+|                | Name           |
+| -------------- | -------------- |
+| void | **[init_log](Files/log_8cpp.md#function-init-log)**()<br />设置日志级别、格式、输出地  |
+
+## Detailed Description
+
+日志实现 
+
+**Author**: antaresz ([antaresz1026@gmail.com](mailto:antaresz1026@gmail.com)) 
+
+**Version**: 1.0 
+
+**Date**: 2024-09-13
+
+**Copyright**: Copyright (c) 2024 antaresz
+
+**Par**: 修改日志:
+
+
+| Date  | Version  | Author  | Description  |
+|  -------- | -------- | -------- | -------- |
+| 2024-09-13  | 1.0  | antaresz  | 添加注释  |
+
+## Functions Documentation
+
+### function init_log
+
+```cpp
+void init_log()
+```
+
+设置日志级别、格式、输出地 
+
+日志初始化 
+
+
+
+
+## Source code
+
+```cpp
+
 #include "log.hpp"
-/// @brief 设置日志级别、格式、输出地
 void init_log() {
     boost::log::core::get()->set_filter(
         boost::log::trivial::severity >= boost::log::trivial::info
@@ -36,3 +74,9 @@ void init_log() {
     // 添加常见属性：时间戳、日志级别等
     boost::log::add_common_attributes();
 }
+```
+
+
+-------------------------------
+
+Updated on 2024-09-13 at 13:39:43 +0800

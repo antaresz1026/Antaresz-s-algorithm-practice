@@ -1,22 +1,40 @@
-/**
- * @file insertionSort.cpp
- * @author antaresz (antaresz1026@gmail.com)
- * @brief insertionSort实现
- * @version 1.0
- * @date 2024-09-13
- * 
- * @copyright Copyright (c) 2024 antaresz
- * 
- * @par 修改日志:
- * <table>
- * <tr><th>Date       <th>Version <th>Author <th>Description
- * <tr><td>2024-09-13 <td>1.0     <td>antaresz    <td>添加注释
- * </table>
- */
+---
+title: src/insertionSort.cpp
+summary: insertionSort实现 
+
+---
+
+# src/insertionSort.cpp
+
+insertionSort实现  [More...](#detailed-description)
+
+## Detailed Description
+
+insertionSort实现 
+
+**Author**: antaresz ([antaresz1026@gmail.com](mailto:antaresz1026@gmail.com)) 
+
+**Version**: 1.0 
+
+**Date**: 2024-09-13
+
+**Copyright**: Copyright (c) 2024 antaresz
+
+**Par**: 修改日志:
+
+
+| Date  | Version  | Author  | Description  |
+|  -------- | -------- | -------- | -------- |
+| 2024-09-13  | 1.0  | antaresz  | 添加注释  |
+
+
+
+## Source code
+
+```cpp
+
 #include "insertionSort.hpp"
 #include "log.hpp"
-/// @brief 使用字符串流输入输出
-/// @param data 
 void insertionSort::dataParse(const std::string& data) {
     std::istringstream iss(data);
     std::ostringstream oss;
@@ -35,9 +53,6 @@ void insertionSort::dataParse(const std::string& data) {
 
     BOOST_LOG_TRIVIAL(trace) << oss.str();
 }
-/// @brief 插入排序
-/// @param data 
-/// @param op 
 void insertionSort::_sort(const std::string& data, const bool& op) {   
     std::ostringstream oss;
     dataParse(data);
@@ -89,3 +104,9 @@ void insertionSort::_sort(const std::string& data, const bool& op) {
     oss.clear();
     _sorted_data.clear();
 }
+```
+
+
+-------------------------------
+
+Updated on 2024-09-13 at 13:39:43 +0800

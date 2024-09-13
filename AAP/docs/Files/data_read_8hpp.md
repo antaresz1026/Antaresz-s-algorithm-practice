@@ -1,36 +1,52 @@
+---
+title: include/dataRead.hpp
+summary: 读取文件数据，流式设计 
+
+---
+
+# include/dataRead.hpp
+
+读取文件数据，流式设计  [More...](#detailed-description)
+
+## Classes
+
+|                | Name           |
+| -------------- | -------------- |
+| class | **[dataRead](Classes/classdata_read.md)** <br />dataRead类  |
+
+## Detailed Description
+
+读取文件数据，流式设计 
+
+**Author**: antaresz (antaresz1026@gmail,com) 
+
+**Version**: 0.1 
+
+**Date**: 2024-09-12
+
+**Copyright**: Copyright (c) 2024
+
+**Par**: 修改日志:
+
+
+| Date  | Version  | Author  | Description  |
+|  -------- | -------- | -------- | -------- |
+| 2024-09-13  | 1.0  | antaresz  | 增添注释  |
+
+
+
+## Source code
+
+```cpp
 #ifndef _DATAREAD_HPP
 #define _DATAREAD_HPP
-/**
- * @file dataRead.hpp
- * @author antaresz (antaresz1026@gmail,com)
- * @brief 读取文件数据，流式设计
- * @version 0.1
- * @date 2024-09-12
- * 
- * @copyright Copyright (c) 2024
- * 
- * @par 修改日志:
- * <table>
- * <tr><th>Date       <th>Version <th>Author <th>Description
- * <tr><td>2024-09-13 <td>1.0     <td>antaresz    <td>增添注释
- * </table>
- */
 #include <fstream>
 #include <sstream>
 #include "log.hpp"
 #include <queue>
 
-/**
- * @brief dataRead类
- * 
- */
 class dataRead {
 public:
-    /**
-     * @brief Construct a new data Read object
-     * 
-     * @param filename 
-     */
     dataRead(const std::string& filename) {
         _file.open(filename);
 
@@ -46,12 +62,6 @@ public:
         }
     }
 
-    /**
-     * @brief 操作符>>重载
-     * 
-     * @param line 
-     * @return dataRead& 
-     */
     dataRead& operator>>(std::string& line) {
         if (!_lines.empty()) {
             line = _lines.front();
@@ -62,20 +72,18 @@ public:
         return *this;
     }
 
-    /**
-     * @brief 如果已经读取完，则返回false
-     * 
-     * @return true 
-     * @return false 
-     */
     operator bool() const {
         return !_lines.empty(); // 返回流是否仍然有效
     }
 private:
-    /// @brief 文件路径
     std::ifstream _file;
-    /// @brief 文件读取数据队列，按行读入
     std::queue<std::string> _lines;
 };
 
 #endif
+```
+
+
+-------------------------------
+
+Updated on 2024-09-13 at 13:39:43 +0800
